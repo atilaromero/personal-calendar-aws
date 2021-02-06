@@ -2,14 +2,6 @@ variable "subscriber_email_addresses" {
   type = list(string)
 }
 
-variable "region" {
-  type = string
-}
-
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_budgets_budget" "zero_cost" {
   name = "Zero cost"
   budget_type = "COST"
