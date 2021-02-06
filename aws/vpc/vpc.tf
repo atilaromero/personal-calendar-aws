@@ -38,12 +38,8 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "rt" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "${var.name} RT"
+    Name = "${var.name} Public RT"
   }
-}
-resource "aws_main_route_table_association" "rta" {
-  vpc_id         = aws_vpc.main.id
-  route_table_id = aws_route_table.rt.id
 }
 
 module "subnet_1" {
