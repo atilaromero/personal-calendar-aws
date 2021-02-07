@@ -2,16 +2,35 @@ provider "aws" {
   region = "us-east-1"
 }
 
+# Stores terraform.tfstate in aws
+terraform {
+  backend "s3" {
+    bucket         = "terraform-state-atilaromero-terraform-examples"
+    key            = "global/s3/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+}
+# Creates a S3 bucket and a DynamoDB with a LockID table
+# These are requirements to use a remote tfstate
+# bucket and key must match the same values above
+module s3_backend {
+  source           = "./s3_backend"
+  bucket           = "terraform-state-atilaromero-terraform-examples"
+  key              = "global/s3/terraform.tfstate"
+}
+
+# To use in free tier
+# This module monitors the account costs.
+# When it is greater than $0.01 per day, it sends an e-mail alert
 module "budget" {
-  # To use in free tier
-  # This module monitors the account costs.
-  # When it is greater than $0.01 per day, it sends an e-mail alert
   source = "./budget"
   subscriber_email_addresses = ["atilaromero@gmail.com"]
 }
 
+# Creates a VPC using 2 zones. Each zone has 2 subnets, one public and one private.
 module "vpc" {
-  # Creates a VPC using 2 zones. Each zone has 2 subnets, one public and one private.
   source = "./vpc"
   name  = "App"
   cidr_block = "10.0.0.0/16"
