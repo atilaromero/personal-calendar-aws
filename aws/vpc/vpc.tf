@@ -55,7 +55,6 @@ module "subnet_1" {
   source = "./subnet"
   name = "${var.name} Subnet 1"
   vpc_id = aws_vpc.main.id
-  igw_id = aws_internet_gateway.igw.id
   public_rt_id = aws_route_table.public_rt.id
   availability_zone = var.subnet_1.availability_zone
   public_CIDR       = var.subnet_1.public_CIDR
@@ -66,7 +65,6 @@ module "subnet_2" {
   source = "./subnet"
   name = "${var.name} Subnet 2"
   vpc_id = aws_vpc.main.id
-  igw_id = aws_internet_gateway.igw.id
   public_rt_id = aws_route_table.public_rt.id
   availability_zone = var.subnet_2.availability_zone
   public_CIDR       = var.subnet_2.public_CIDR
