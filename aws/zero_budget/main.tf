@@ -12,7 +12,7 @@ resource "aws_budgets_budget" "zero_cost" {
 
   notification {
     comparison_operator        = "GREATER_THAN"
-    threshold                  = 80
+    threshold                  = 100
     threshold_type             = "PERCENTAGE"
     notification_type          = "ACTUAL"
     subscriber_email_addresses = var.subscriber_email_addresses

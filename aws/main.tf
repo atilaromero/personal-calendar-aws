@@ -24,8 +24,8 @@ module s3_backend {
 # To use in free tier
 # This module monitors the account costs.
 # When it is greater than $0.01 per day, it sends an e-mail alert
-module "budget" {
-  source = "./budget"
+module "zero_budget" {
+  source = "./zero_budget"
   subscriber_email_addresses = ["atilaromero@gmail.com"]
 }
 
