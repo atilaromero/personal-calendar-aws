@@ -1,3 +1,4 @@
+# Creates 2 subnets, one public and one private
 variable "name" {
   type = string
 }
@@ -5,13 +6,9 @@ variable "vpc_id" {
   type = string
   description = "example: aws_vpc.main.id"
 }
-variable igw_id {
+variable "public_rt_id" {
   type = string
-  description = "example: aws_internet_gateway.igw.id"
-}
-variable rt_id {
-  type = string
-  description = "example: aws_route_table.rt.id"
+  description = "example: aws_route_table.public_rt.id"
 }
 variable "availability_zone" {
   type = string
@@ -44,12 +41,7 @@ resource "aws_subnet" "public_subnet" {
     Name = "${var.name} Public"
   }
 }
-resource "aws_route" "igw" {
-  gateway_id = var.igw_id
-  route_table_id = var.rt_id
-  destination_cidr_block = "0.0.0.0/0"
-}
 resource "aws_route_table_association" "rt_association" {
   subnet_id      = aws_subnet.public_subnet.id
-  route_table_id = var.rt_id
+  route_table_id = var.public_rt_id
 }

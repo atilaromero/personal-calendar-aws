@@ -1,3 +1,6 @@
+# To use in free tier
+# This module monitors the account costs.
+# When it is greater than $0.01 per day, it sends an e-mail alert
 variable "subscriber_email_addresses" {
   type = list(string)
 }
