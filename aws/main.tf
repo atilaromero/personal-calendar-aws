@@ -46,8 +46,3 @@ module "vpc" {
     private_CIDR = "10.0.102.0/24"
   }
 }
-
-module "dynamodb" {
-  source = "./dynamodb"
-  count = 0
-}
