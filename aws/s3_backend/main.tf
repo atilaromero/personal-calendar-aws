@@ -2,9 +2,9 @@ variable bucket {
   type = string
   description = "unique bucket name, same as used in backend s3 'bucket' value"
 }
-variable key {
+variable dynamodb_table {
   type = string
-  description = "lock table name, same as used in backend s3 'key' value"
+  description = "lock table name, same as used in backend s3 'dynamodb_table' value"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "terraform_state" {
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name = var.key
+  name = var.dynamodb_table
   billing_mode = "PROVISIONED"
   read_capacity = 1
   write_capacity = 1
