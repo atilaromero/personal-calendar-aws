@@ -1,4 +1,4 @@
-module github.com/atilaromero/terraform-examples/lambda/calendar
+module github.com/atilaromero/personal-calendar-aws/lambda/calendar
 
 go 1.14
 
