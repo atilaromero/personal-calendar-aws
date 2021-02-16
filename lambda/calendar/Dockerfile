@@ -2,7 +2,7 @@ FROM golang:1.14-alpine as builder
 ENV CGO_ENABLED=0
 WORKDIR /build
 COPY . .
-# RUN go test
+RUN go test
 RUN go build -o /main
 
 
