@@ -32,3 +32,16 @@ module "vpc" {
 module "ecr" {
   source = "./ecr"
 }
+
+# Creates a IAM user for Github Actions
+module "github_user" {
+  source = "./github_user"
+}
+
+output "AWS_ACCESS_KEY_ID" {
+  value = module.github_user.AWS_ACCESS_KEY_ID
+}
+
+output "AWS_SECRET_ACCESS_KEY" {
+  value = module.github_user.AWS_SECRET_ACCESS_KEY
+}
