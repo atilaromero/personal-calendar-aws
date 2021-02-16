@@ -13,7 +13,7 @@ resource "aws_iam_user" "github" {
 data "aws_iam_policy_document" "ecr" {
   statement {
     actions   = ["*"]
-    resources = ["arn:aws:ecr:*:*:repository/${var.repository}/*"]
+    resources = ["arn:aws:ecr:*:*:repository/${var.repository}"]
   }
 
   statement {
