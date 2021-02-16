@@ -41,10 +41,17 @@ module "github_user" {
   repository = module.ecr.repository
 }
 
+module "lambda" {
+  image_uri = "269789260668.dkr.ecr.us-east-1.amazonaws.com/calendar-lambda:66a73090fb09c622b83f6532da5fe570f054d520"
+  function_name = "calendar-lambda"
+}
+
 output "AWS_ACCESS_KEY_ID" {
+  description = "Create this secret in Github to use with github Actions"
   value = module.github_user.AWS_ACCESS_KEY_ID
 }
 
 output "AWS_SECRET_ACCESS_KEY" {
+  description = "Create this secret in Github to use with github Actions"
   value = module.github_user.AWS_SECRET_ACCESS_KEY
 }
