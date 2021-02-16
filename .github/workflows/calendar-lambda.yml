@@ -15,6 +15,7 @@ on:
   push:
     paths:
       - "lambda/calendar/**"
+      - ".github/workflows/calendar-lambda.yml"
 
 name: Push to Amazon ECR
 
