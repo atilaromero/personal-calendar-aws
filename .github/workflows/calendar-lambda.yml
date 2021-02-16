@@ -13,6 +13,8 @@
 
 on:
   push:
+    paths:
+      - "lambda/calendar"
 
 name: Push to Amazon ECR
 
