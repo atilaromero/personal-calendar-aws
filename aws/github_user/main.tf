@@ -1,9 +1,9 @@
 variable "repository" {
-  default = "repo"
+  type = string
 }
 
 variable "user" {
-  default = "github"
+  type = string
 }
 
 resource "aws_iam_user" "github" {

@@ -31,11 +31,14 @@ module "vpc" {
 # Creates a ECR repository
 module "ecr" {
   source = "./ecr"
+  repository = "calendar-lambda"
 }
 
 # Creates a IAM user for Github Actions
 module "github_user" {
   source = "./github_user"
+  user = "github"
+  repository = module.ecr.repository
 }
 
 output "AWS_ACCESS_KEY_ID" {

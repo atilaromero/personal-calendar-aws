@@ -21,8 +21,8 @@ defaults:
     working-directory: lambda/calendar
 
 jobs:
-  deploy:
-    name: Deploy
+  push:
+    name: Build and push
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +44,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: repo
+        ECR_REPOSITORY: calendar-lambda
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
