@@ -27,3 +27,8 @@ module "vpc" {
     private_CIDR = "10.0.102.0/24"
   }
 }
+
+# Creates a ECR repository
+module "ecr" {
+  source = "./ecr"
+}
