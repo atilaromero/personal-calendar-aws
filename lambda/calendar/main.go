@@ -5,27 +5,20 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/apognu/gocal"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-var calendarURL = os.Getenv("CALENDAR_URL")
-
-// var timeout = 3 * time.Second
-
-func init() {
-	if calendarURL == "" {
-		log.Println("CALENDAR_URL is empty")
-	}
+type Input struct {
+	CalendarURL string `json:"calendarURL"`
 }
 
-func LambdaHandler() ([]gocal.Event, error) {
+func LambdaHandler(i Input) ([]gocal.Event, error) {
 	client := http.Client{
 		// Timeout: timeout,
 	}
-	resp, err := client.Get(calendarURL)
+	resp, err := client.Get(i.CalendarURL)
 	if err != nil {
 		log.Printf("error retrieving calendar: %v", err)
 		// not returning full error to avoid leaking the calendar URL
