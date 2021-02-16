@@ -1,3 +1,9 @@
+variable region {}
+provider "aws"{
+  region = var.region
+}
+
+
 variable bucket {
   type = string
   description = "unique bucket name, same as used in backend s3 'bucket' value"
