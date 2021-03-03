@@ -15,5 +15,7 @@ RUN chmod 755 /entrypoint.sh
 
 COPY --from=builder /main /main
 
+WORKDIR /tmp
+
 ENTRYPOINT [ "/entrypoint.sh" ] 
 CMD ["/main"]
