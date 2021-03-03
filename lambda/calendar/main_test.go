@@ -34,3 +34,16 @@ func TestCalendarParserFull(t *testing.T) {
 		t.Errorf("len(events) != 2: %d", len(events))
 	}
 }
+
+func TestEmptyRequest(t *testing.T) {
+	i := Input{}
+	_, err := LambdaHandler(i)
+	if err == nil {
+		t.Error("LambdaHandler should return an error.")
+	}
+	got := err.Error()
+	expect := errInputEmpty
+	if got != expect {
+		t.Errorf("expect: '%v', got '%v'", expect, got)
+	}
+}

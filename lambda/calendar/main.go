@@ -14,9 +14,14 @@ type Input struct {
 	CalendarURL string `json:"calendarURL"`
 }
 
+var errInputEmpty = `request must be on the form {calendarURL: "http://url.ics"}`
+
 func LambdaHandler(i Input) ([]gocal.Event, error) {
 	client := http.Client{
 		// Timeout: timeout,
+	}
+	if i.CalendarURL == "" {
+		return []gocal.Event{}, fmt.Errorf(errInputEmpty)
 	}
 	resp, err := client.Get(i.CalendarURL)
 	if err != nil {
